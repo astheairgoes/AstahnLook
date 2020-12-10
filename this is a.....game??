@@ -1,0 +1,99 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+import random 
+
+
+def _shuffle(direction):
+   square = random.randint(1, 4)
+   global treasure
+   treasure = direction[square] 
+   print('the treasure is out! let the game begin!')
+   return
+
+def step(direction):
+     global number 
+
+     while number < 5 :
+
+        global avatar
+        avatar = direction[number]
+        
+        dialogue = '{} step' 
+        print(dialogue.format(number  + 1))
+        number += 1
+        if number == 5:
+            number = 0
+            print('oops! dead end!')
+        break  
+    
+
+class _map:
+    def __init__(self, p1, p2, p3, p4, p5):
+        self.p1 = p1
+        self.p2 = p2
+        self.p3 = p3
+        self.p4 = p3
+        self.p5 = p5
+class _direction(_map):
+    def __init__(self, direction):
+        self.direction = direction
+        
+        
+
+north = _map('nA','nB','nC','nD','nE') 
+south = _map('sA','sB','sC','sD','sE')
+east  = _map('eA','eB','eC','eD','eE')
+west  = _map('wA','wB','wC','wD','wE')
+
+north = _direction(north)
+south = _direction(south)
+east = _direction(east)
+west = _direction(west)
+
+
+x = list((north, south, east, west))
+
+
+random.shuffle(x)
+y = x[1]
+
+if y == north :
+        _shuffle(north)
+        north.direction
+
+elif y == south :
+        _shuffle(south)
+        south.direction
+elif y == east :
+        _shuffle(east)   
+        east.direction
+elif y == west :
+        _shuffle(west)
+        west.direction
+print(treasure)
+number = 0
+while True :
+    
+
+    if input() == 'w':
+            step(north) 
+    elif input() == 's':
+            step(south)       
+    elif input() == 'd':
+            step(east)          
+    elif input() == 'a':
+            step(west)   
+    else:
+        pass
+
+   
+    if avatar == treasure :
+            print('congrats! you win!')    
+            break 
+    else:
+        continue
